@@ -9,15 +9,15 @@ on:
         type: string
 
 jobs:
-  twitter:
-    name: Heartbeat twitter.com
+  heartbeat:
+    name: Heartbeat
     runs-on: ubuntu-latest
     steps:
-      - name: get twitter.com http status code
+      - name: get http status code
         id: http-code
         run: |
           echo "HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' ${{ inputs.target_url }})" >> $GITHUB_OUTPUT
-      - name: check twitter.com http status code
+      - name: check http status code
         run: |
           if [[ "${{ steps.http-code.outputs.HTTP_CODE }}" -ge 400 ]]; then
             exit 1
